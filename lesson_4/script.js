@@ -100,7 +100,7 @@ showTypeOf(income);
 showTypeOf(deposit);
 
 console.log(getStatusIncome());
-console.log(period*accumulatedMonth);
+console.log(getTargetMonth(mission, accumulatedMonth)*accumulatedMonth);
 console.log(Math.floor(getTargetMonth(mission,accumulatedMonth)));
 
 
