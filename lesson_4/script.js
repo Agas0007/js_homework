@@ -4,14 +4,14 @@
  * Вариант без проверки пользовательского ввода
  */
 
-let money = prompt('Ваш ежемесячный доход?'),
+let money = prompt('Ваш ежемесячный доход?', 15000),
     income = 'freelance',
-    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
-    monthlyRequiredCosts_1 = prompt('Какие обязательные ежемесячные расходы у вас есть?'),
-    amountOfExpenses_1 = prompt('Во сколько это обойдется?'),
-    monthlyRequiredCosts_2 = prompt('Какие ещё обязательные ежемесячные расходы у вас есть?'),
-    amountOfExpenses_2 = prompt('Во сколько это обойдется?'),
-    deposit = prompt('Есть ли у вас депозит в банке?'),
+    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Такси, Кино, Игры'),
+    monthlyRequiredCosts_1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', 'Общественный транспорт, интернет'),
+    amountOfExpenses_1 = prompt('Во сколько это обойдется?', 3455),
+    monthlyRequiredCosts_2 = prompt('Какие ещё обязательные ежемесячные расходы у вас есть?', 'Кредит'),
+    amountOfExpenses_2 = prompt('Во сколько это обойдется?', 7938),
+    deposit = prompt('Есть ли у вас депозит в банке?', 'Нет'),
     mission = 300000,
     budgetMonth = +money - (+amountOfExpenses_1) - (+amountOfExpenses_2),
     budgetDay = Math.floor(+budgetMonth/30),
@@ -42,7 +42,7 @@ console.log(budgetDay);
 
 switch(true){
     case budgetDay > 800:
-        console.log('Высокий уровень дохода!');
+        console.log('Высокий уровень дохода');
     break;
     case budgetDay >= 300 && budgetDay < 800:
         console.log('Средний уровень дохода');
@@ -54,6 +54,55 @@ switch(true){
         console.log('Что то пошло не так');
     break;
 }
+
+let showTypeOf = function(data){
+    console.log(data, typeof(data));
+}
+
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
+
+let getStatusIncome = function(){
+    if(budgetDay < 300){
+        return ('Высокий уровень дохода');
+    } else if(budgetDay <= 800){
+        return ('Средний уровень дохода');
+    } else {
+        return ('Низкий уровень дохода');
+    }
+}
+
+function getExpensesMonth(amountOfExpenses_1, amountOfExpenses_2){
+    return +amountOfExpenses_1 + +amountOfExpenses_2;
+}
+
+console.log(getExpensesMonth(amountOfExpenses_1, amountOfExpenses_2));
+
+let accumulatedMonth;
+
+function getAccumulatedMonth(money, amountOfExpenses_1, amountOfExpenses_2){
+    accumulatedMonth = +money - (+amountOfExpenses_1) - (+amountOfExpenses_2);
+    return accumulatedMonth;
+}
+getAccumulatedMonth(money, amountOfExpenses_1, amountOfExpenses_2);
+console.log(accumulatedMonth);
+
+function getTargetMonth(mission, accumulatedMonth){
+    return (mission/accumulatedMonth);
+}
+
+
+console.clear();
+
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
+
+console.log(getStatusIncome());
+console.log(period*accumulatedMonth);
+console.log(Math.floor(getTargetMonth(mission,accumulatedMonth)));
+
 
 /**
  * Вариант с проверкой пользовательского ввода
