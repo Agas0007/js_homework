@@ -17,7 +17,7 @@ let money,
 // }
 
 const valid = function(data){
-    return (isNaN(data) || data.trim() === '' || data === null) ? false : true;
+    return (isNaN(data) || data === '' || data === null) ? false : true;
 }
 
 let start = function(){
@@ -48,11 +48,9 @@ let getExpensesMonth = function(){
             monthlyRequiredCosts1 = prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры');
         if(i === 1)
             monthlyRequiredCosts2 = prompt('Введите обязательную статью расходов', 'Интернет');
-
-        sum += +prompt('Во сколько это обойдётся?', 2500);
-
+            
         do{
-            sum = prompt('Во сколько это обойдётся?', 2500);
+            sum += +prompt('Во сколько это обойдётся?', 2500);
             console.log('sum', sum);
         }while(valid(sum) === false);
     }
