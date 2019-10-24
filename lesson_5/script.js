@@ -16,11 +16,15 @@ let money,
 //     }
 // }
 
+const valid = function(data){
+    return (isNaN(data) || data.trim() === '' || data === null) ? false : true;
+}
+
 let start = function(){
     do{
         money = prompt('Ваш ежемесячный доход?', 33800);
         console.log('money: ', money);
-    } while(isNaN(money) || money.trim() === '' || money === null);
+    } while(valid(money) === false);
 }
 
 start();
@@ -29,27 +33,28 @@ start();
         console.log(data, typeof(data));
     }
     
-    // showTypeOf(money);
-    // showTypeOf(income);
-    // showTypeOf(deposit);
+    showTypeOf(money);
+    showTypeOf(income);
+    showTypeOf(deposit);
 
-let monthlyRequiredCosts_1,
-    monthlyRequiredCosts_2;
+let monthlyRequiredCosts1,
+    monthlyRequiredCosts2;
 
 let getExpensesMonth = function(){
     let sum = 0;
 
     for(let i = 0; i < 2; i++){
         if(i === 0 )
-            monthlyRequiredCosts_1 = prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры');
+            monthlyRequiredCosts1 = prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры');
         if(i === 1)
-            monthlyRequiredCosts_1 = prompt('Введите обязательную статью расходов', 'Интернет');
+            monthlyRequiredCosts2 = prompt('Введите обязательную статью расходов', 'Интернет');
 
         sum += +prompt('Во сколько это обойдётся?', 2500);
 
-        while(isNaN(sum) || sum == '' || sum == null) {
-            getExpensesMonth();
-        }
+        do{
+            sum = prompt('Во сколько это обойдётся?', 2500);
+            console.log('sum', sum);
+        }while(valid(sum) === false);
     }
 
     return sum;
