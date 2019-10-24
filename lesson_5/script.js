@@ -48,7 +48,7 @@ let getExpensesMonth = function(){
             monthlyRequiredCosts1 = prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры');
         if(i === 1)
             monthlyRequiredCosts2 = prompt('Введите обязательную статью расходов', 'Интернет');
-            
+
         do{
             sum += +prompt('Во сколько это обойдётся?', 2500);
             console.log('sum', sum);
@@ -80,10 +80,7 @@ let budgetDay = getAccumulatedMonth()/30;
 
 
 let getStatusIncome = function(){
-    if(budgetDay < 0){
-        return ('Что-то пошло не так');
-    }
-    else if(budgetDay < 300){
+    if(budgetDay < 300){
         return ('Низкий уровень дохода');
     } else if(budgetDay <= 800){
         return ('Средний уровень дохода');
