@@ -32,13 +32,17 @@ let appData = {
             for (let i = 0; i < 2; i++) {
 
                 if (i === 0) {
-                    Object.defineProperty(appData.expenses, prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры'), {value : +prompt('Во сколько это обойдётся?', 2500),
+                    Object.defineProperty(appData.expenses, 
+                        prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры'),
+                        {value : +prompt('Во сколько это обойдётся?', 2500),
                         writable : true,
                         enumerable : true,
                         configurable : true});
                 }
                 if (i === 1) {
-                    Object.defineProperty(appData.expenses, prompt('Введите обязательную статью расходов', 'Интернет'), {value : +prompt('Во сколько это обойдётся?', 2500),
+                    Object.defineProperty(appData.expenses, 
+                        prompt('Введите обязательную статью расходов', 'Интернет'),
+                        {value : +prompt('Во сколько это обойдётся?', 2500),
                         writable : true,
                         enumerable : true,
                         configurable : true});
