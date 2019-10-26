@@ -78,7 +78,12 @@ let getTargetMonth = function(){
 
 let budgetDay = getAccumulatedMonth()/30;
 
-(getTargetMonth() < 0) ? console.log('Цель не будет достигнута') : console.log('Цель будет достигнута за ' + Math.ceil(getTargetMonth()) + ' месяца(ев)');
+
+if(getTargetMonth() < 0){
+    console.log('Цель не будет достигнута');
+} else{
+    console.log('Цель будет достигнута за ' + Math.ceil(getTargetMonth()) + ' месяца(ев)');
+}
 
 
 let getStatusIncome = function(){
