@@ -81,16 +81,6 @@ let getTargetMonth = function(){
 
 getTargetMonth();
 
-// let getStatusIncome = function(){
-//     if(appData.budgetDay < 300){
-//         return ('Низкий уровень дохода');
-//     } else if(appData.budgetDay <= 800){
-//         return ('Средний уровень дохода');
-//     } else {
-//         return ('Высокий уровень дохода');
-//     }
-// };
-
 let getStatusIncome = function(){
         if(appData.budgetDay < 300){
             appData.income = 'Низкий уровень дохода';
@@ -105,7 +95,6 @@ console.log('Расходы за месяц: ' + appData.expensesMonth);
 console.log('За какой период будет достигнута цель (в месяцах) - ' + Math.ceil(appData.period));
 console.log('Уровень дохода: ' + appData.income);
 
-// for(let item in appData){
-//     console.log("Наша программа включает в себя данные: " + item + " " + appData[item]);
-// }
-console.log(appData);
+for(let item in appData){
+    console.log("Наша программа включает в себя данные: " + item + " " + appData[item]);
+}
