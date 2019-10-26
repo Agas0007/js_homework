@@ -32,14 +32,20 @@ let appData = {
             for (let i = 0; i < 2; i++) {
 
                 if (i === 0) {
-                    monthlyRequiredCosts1 = prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры');
-                    appData.expenses.num1 = +prompt('Во сколько это обойдётся?', 3500);
+                    Object.defineProperty(appData.expenses, prompt('Введите обязательную статью расходов', 'Оплата съемной квартиры'), {value : +prompt('Во сколько это обойдётся?', 2500),
+                        writable : true,
+                        enumerable : true,
+                        configurable : true});
                 }
                 if (i === 1) {
-                    monthlyRequiredCosts2 = prompt('Введите обязательную статью расходов', 'Интернет');
-                    appData.expenses.num2 = +prompt('Во сколько это обойдётся?', 2500);
+                    Object.defineProperty(appData.expenses, prompt('Введите обязательную статью расходов', 'Интернет'), {value : +prompt('Во сколько это обойдётся?', 2500),
+                        writable : true,
+                        enumerable : true,
+                        configurable : true});
                 }
-                if(valid(appData.expenses.num1) === false || valid(appData.expenses.num1) === false){
+            }
+            for(let item in appData.expenses){
+                if(valid(appData.expenses[item]) === false){
                     expenses();
                 }
             }
@@ -75,16 +81,31 @@ let getTargetMonth = function(){
 
 getTargetMonth();
 
-let getStatusIncome = function(){
-    if(appData.budgetDay < 300){
-        return ('Низкий уровень дохода');
-    } else if(appData.budgetDay <= 800){
-        return ('Средний уровень дохода');
-    } else {
-        return ('Высокий уровень дохода');
-    }
-};
+// let getStatusIncome = function(){
+//     if(appData.budgetDay < 300){
+//         return ('Низкий уровень дохода');
+//     } else if(appData.budgetDay <= 800){
+//         return ('Средний уровень дохода');
+//     } else {
+//         return ('Высокий уровень дохода');
+//     }
+// };
 
+let getStatusIncome = function(){
+        if(appData.budgetDay < 300){
+            appData.income = 'Низкий уровень дохода';
+        } else if(appData.budgetDay <= 800){
+            appData.income = 'Средний уровень дохода';
+        } else {
+            appData.income = 'Высокий уровень дохода';
+        }
+    };
+getStatusIncome();
 console.log('Расходы за месяц: ' + appData.expensesMonth);
-console.log('За какой период будет достигнута цель (в месяцах)' + appData.period);
-console.log(getStatusIncome());
+console.log('За какой период будет достигнута цель (в месяцах) - ' + Math.ceil(appData.period));
+console.log('Уровень дохода: ' + appData.income);
+
+// for(let item in appData){
+//     console.log("Наша программа включает в себя данные: " + item + " " + appData[item]);
+// }
+console.log(appData);
