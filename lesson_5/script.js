@@ -15,7 +15,18 @@ let money,
 // }
 
 const valid = function (data) {
-    return (isNaN(data) || data === '' || data === null) ? false : true;
+    return (isNaN(data) || data === '' || data === null) ? false : data;
+};
+
+let validExpenses = function(data){
+    let result;
+    if(isNaN(data)){
+        result = prompt('Данные указаны некорректно, пожалуйста, укажите число!');
+        validExpenses(result);
+    } else{
+        result = data;
+    }
+    return Number(result);
 };
 
 let start = function () {
@@ -51,17 +62,17 @@ let getExpensesMonth = function () {
             monthlyRequiredCosts2 = prompt('Введите обязательную статью расходов', 'Интернет');
         }
 
-        do {
-            sum += +prompt('Во сколько это обойдётся?', 2500);
-        } while (valid(sum) === false);
+        sum += +prompt('Во сколько это обойдётся?', 2500);
+        sum = validExpenses(sum);
     }
 
     return sum;
+
 };
 
 
 let expensesAmmount = getExpensesMonth();
-console.log('Расходы в месяц: ' + expensesAmmount);
+console.log('Расходы в месяц: ' + valid(expensesAmmount));
 
 
 let getAccumulatedMonth = function () {
