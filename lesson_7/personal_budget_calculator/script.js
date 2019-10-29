@@ -1,0 +1,21 @@
+'use strict';
+
+let calculate = document.getElementById('start'), 
+    btnsPlus1 = document.getElementsByTagName('button')[0],
+    btnsPlus2 = document.getElementsByTagName('button')[1],
+    checkbox = document.querySelector('#deposit-check'),
+    additionalIncomeItems = document.querySelectorAll('.additional_income-item'),
+    inputBudgetDay = document.getElementsByClassName('budget_day-value'),
+    inputExpensesMoth = document.getElementsByClassName('expenses_month-value'),
+    inputAdditionalIncome = document.getElementsByClassName('additional_income-value'),
+    inputAdditionalExpenses = document.getElementsByClassName('additional_expenses-value'),
+    inputIncomePeriod = document.getElementsByClassName('income_period-value'),
+    inputTargetMoth = document.getElementsByClassName('target_month-value'),
+    money = document.querySelector('.salary-amount'),
+    incomeTitle = document.querySelector('input[class="income-title"'),
+    incomeAmount = document.querySelector('.income-amount'),
+    inputExpensesTitle = document.querySelector('input[class="expenses-title"'),
+    expensesAmount = document.querySelector('.expenses-amount'),
+    addExpenses = document.querySelectorAll('.additional_expenses-item'),
+    mission = document.querySelectorAll('.target-amount'),
+    range = document.querySelector('input[type="range"');
