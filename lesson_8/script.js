@@ -23,17 +23,19 @@ let start = document.getElementById('start'),
     periodAmount = document.querySelector('.period-amount'),
     data = document.querySelector('.data'),
     dataInputsAndBtns = data.querySelectorAll('input, button'),
-    cancel = document.getElementById('cancel');
+    cancel = document.getElementById('cancel'),
+    amountItems = document.querySelectorAll('input[class$="-amount"]'),
+    titleItems = document.querySelectorAll('input[placeholder$="Наименование"]');
 
-let isMatch = function(data) {
-    let regexp = /\d/gi;
+// let isMatch = function(data) {
+//     let regexp = /\d/gi;
 
-    if (data.match(regexp) !== null) {
-        return false;
-    } else {
-        return true;
-    }
-};
+//     if (data.match(regexp) !== null) {
+//         return false;
+//     } else {
+//         return true;
+//     }
+// };
 
 let appData = {
     budget: 0,
@@ -84,6 +86,15 @@ let appData = {
         if (expensesItems.length == 3) {
             btnsPlus2.style.display = 'none';
         }
+
+        let itemExpensesTitle = document.querySelectorAll('.expenses-title');
+        itemExpensesTitle.forEach(function(item){
+            item.addEventListener('focus', appData.inputTextValidation);
+        });
+        let intemExpensesAmount = document.querySelectorAll('.expenses-amount');
+        intemExpensesAmount.forEach(function(item){
+            item.addEventListener('focus', appData.intputNumValidation);
+        });
     },
     getExpenses: function() {
         expensesItems.forEach(function(item) {
@@ -117,6 +128,15 @@ let appData = {
         if (incomeItems.length === 3) {
             btnsPlus1.style.display = 'none';
         }
+
+        let itemIncomeTitle = document.querySelectorAll('.income-title');
+        itemIncomeTitle.forEach(function(item){
+            item.addEventListener('focus', appData.inputTextValidation);
+        });
+        let intemIncomeAmount = document.querySelectorAll('.income-amount');
+        intemIncomeAmount.forEach(function(item){
+            item.addEventListener('focus', appData.intputNumValidation);
+        });
     },
     getIcnome: function() {
         incomeItems.forEach(function(item) {
@@ -195,17 +215,56 @@ let appData = {
         } else {
             start.removeAttribute('disabled');
         }
+    },
+    inputAmountListener: function(){
+        amountItems.forEach(function(item){
+            item.addEventListener('focus', appData.intputNumValidation);
+        });
+    },
+    intputNumValidation: function(event){
+        let input = event.target,
+            value = input.value;
+
+            input.addEventListener('input', onInput);
+
+            function onInput(event){
+                var newValue = event.target.value;
+                if(newValue.match(/[^0-9]/g)){
+                    input.value = value;
+                    return;
+                }
+                value = newValue;
+            }
+    },
+    inputTitleListener: function(){
+        titleItems.forEach(function(input){
+            input.addEventListener('focus', appData.inputTextValidation);
+        });
+    },
+    inputTextValidation: function(event){
+        let input = event.target,
+            value = input.value;
+
+            input.addEventListener('input', onInput);
+
+            function onInput(event){
+                var newValue = event.target.value;
+                if(newValue.match(/[^а-яА-Я, ]/g)){
+                    input.value = value;
+                    return;
+                }
+                value = newValue;
+            }
     }
 };
-
+appData.inputAmountListener();
+appData.inputTitleListener();
 appData.checkSalaryAmount();
 salaryAmount.addEventListener('input', appData.checkSalaryAmount);
-start.addEventListener('mouseover', appData.isEmptySalaryAmount);
-start.addEventListener('click', appData.start);
-start.addEventListener('click', appData.stop);
 btnsPlus1.addEventListener('click', appData.addIncomeBlock);
 btnsPlus2.addEventListener('click', appData.addExpensesBlock);
 periodSelect.addEventListener('input', appData.periodSelect);
-
+start.addEventListener('click', appData.start);
+start.addEventListener('click', appData.stop);
 // appData.addExpenses = appData.addExpenses.map((item) => item[0].toUpperCase() + item.slice(1).toLowerCase());
 // console.log(String(appData.addExpenses.join(',')));
