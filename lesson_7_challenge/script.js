@@ -17,6 +17,6 @@ function clock(){
 
     let dateTime = hours+':'+minutes+':'+seconds+' '+day+'.'+mounth+'.'+year;
     document.querySelector('div').innerHTML = dateTime;
-    setTimeout("clock();", 1000);
+    setTimeout(clock, 1000);
 }
 clock();
