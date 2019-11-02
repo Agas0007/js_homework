@@ -80,6 +80,12 @@ let appData = {
     },
     addExpensesBlock: function() {
         let cloneExpensesItem = expensesItems[0].cloneNode(true);
+        let expensesChildren = cloneExpensesItem.querySelectorAll('*');
+
+        for(let i = 0; i < expensesChildren.length; i++){
+            expensesChildren[i].value = null;
+        }
+
         expensesItems[0].parentNode.insertBefore(cloneExpensesItem, btnsPlus2);
         expensesItems = document.querySelectorAll('.expenses-items');
 
@@ -122,6 +128,12 @@ let appData = {
     },
     addIncomeBlock: function() {
         let cloneIncomeItem = incomeItems[0].cloneNode(true);
+        let incomeChildren = cloneIncomeItem.querySelectorAll('*');
+
+        for(let i = 0; i < incomeChildren.length; i++){
+            incomeChildren[i].value = null;
+        }
+
         incomeItems[0].parentNode.insertBefore(cloneIncomeItem, btnsPlus1);
         incomeItems = document.querySelectorAll('.income-items');
 
@@ -212,8 +224,10 @@ let appData = {
     checkSalaryAmount: function() {
         if (salaryAmount.value == '') {
             start.setAttribute('disabled', 'disabled');
+            start.style.pointerEvents = 'none';
         } else {
             start.removeAttribute('disabled');
+            start.style.pointerEvents = null;
         }
     },
     inputAmountListener: function(){
