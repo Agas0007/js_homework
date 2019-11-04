@@ -281,19 +281,25 @@ appData = {
         appData.deposit = false;
         appData.percentDeposit = 0;
         appData.moneyDeposit = 0;
-        appData.preparation();
+        
+        for(let i = 1; incomeItems.length > i; i++){
+            incomeItems[i].parentNode.removeChild(incomeItems[i]);
+        }
+        btnsPlus1.style.display = '';
+        
+        for(let i = 1; expensesItems.length > i; i++){
+            expensesItems[i].parentNode.removeChild(expensesItems[i]);
+        }
+        btnsPlus2.style.display = 'block';
+
         let dataChildren = document.querySelectorAll('input, button');
         dataChildren.forEach(function(elem){
             elem.removeAttribute('disabled');
             elem.value = null;
         });
-        let incomeChildren = document.querySelectorAll('.income-items');
-        incomeChildren.forEach(element => {
-            for(let i = incomeChildren.length; i > 1; i--){
-                incomeChildren.parentNode.removeChild(element);
-            }
-        });
-        
+        periodSelect.value = 1;
+        periodAmount.textContent = periodSelect.value;
+        appData.preparation();
     },
     preparation: function(){
         appData.inputAmountListener();
