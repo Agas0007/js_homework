@@ -25,7 +25,8 @@ let start = document.getElementById('start'),
     dataInputsAndBtns = data.querySelectorAll('input, button'),
     cancel = document.getElementById('cancel'),
     amountItems = document.querySelectorAll('input[class$="-amount"]'),
-    titleItems = document.querySelectorAll('input[placeholder$="Наименование"]');
+    titleItems = document.querySelectorAll('input[placeholder$="Наименование"]'),
+    depositCheck = document.querySelectorAll('#deposit-check')[0];
 
 let appData;
 appData = {
@@ -269,6 +270,9 @@ appData = {
         }
     },
     fullReset: function(){
+        start.style.display = 'block';
+        cancel.style.display = 'none';
+
         appData.budget = 0;
         appData.budgetDay = 0;
         appData.budgetMonth = 0;
@@ -299,6 +303,7 @@ appData = {
         });
         periodSelect.value = 1;
         periodAmount.textContent = periodSelect.value;
+        depositCheck.checked = false;
         appData.preparation();
     },
     preparation: function(){
