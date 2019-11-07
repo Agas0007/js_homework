@@ -11,11 +11,10 @@ let DomElement = {
         if(selector[0] == '.'){
             newElement = document.createElement('div');
             newElement.setAttribute('class', 'block');
-            newElement.style = 
-            `height: `+height+`;`+
-            `width:`+width+`;`+
-            `background-color:`+bg+`;`+
-            `font-size:`+fontSize+`;`;
+            newElement.style = `height: ${height};
+            width: ${width};
+            background: ${bg};
+            font-size: ${fontSize};`;
             document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(newElement);
             });
