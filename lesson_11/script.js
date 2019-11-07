@@ -43,13 +43,9 @@ let AppData = function () {
     this.deposit = false;
     this.percentDeposit = 0;
     this.moneyDeposit = 0;
-
 };
 
 AppData.prototype.start = function () {
-    // if (salaryAmount.value === '') {
-    //     return alert('Error: Поле "Месячный доход" должно быть заполнено');
-    // }
     this.budget = +salaryAmount.value;
     this.getExpenses();
     this.getIcnome();
@@ -76,17 +72,14 @@ AppData.prototype.getCheckPlaceholder = function (item) {
 };
 
 AppData.prototype.showResults = function () {
-    let _this = this;
-    inputBudgetMonth.value = this.budgetMonth;
-    inputBudgetDay.value = Math.floor(this.budgetDay);
-    inputExpensesMoth.value = this.expensesMonth;
-    inputAdditionalExpenses.value = this.addExpenses.join(', ');
-    inputAdditionalIncome.value = this.addIncome.join(', ');
-    inputTargetMoth.value = Math.ceil(this.getTargetMonth());
-    inputIncomePeriod.value = this.calcPeriod();
-    periodSelect.addEventListener('input', function () {
-        inputIncomePeriod.value = _this.calcPeriod();
-    });
+    budgetMonthValue.value = this.budgetMonth;
+    budgetDayValue.value = Math.floor(this.budgetDay);
+    expensesMonthValue.value = this.expensesMonth;
+    additionalIncomeValue.value = this.addExpenses.join(', ');
+    additionalIncomeValue.value = this.addIncome.join(', ');
+    targetMonthValue.value = Math.ceil(this.getTargetMonth());
+    incomePeriodValue.value = this.calcPeriod();
+    periodSelect.addEventListener('input', () => incomePeriodValue.value = this.calcPeriod());
 };
 AppData.prototype.addExpensesBlock = function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
