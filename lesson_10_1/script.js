@@ -2,17 +2,23 @@
 
 let DomElement = {
     selector: '',
-    height: '300px',
+    height: '',
     width: '',
     bg: '',
     fontSize: '',
-    createElement: function(selector){
+    createElement: function(selector, height, width, bg, fontSize){
         let newElement;
         if(selector[0] == '.'){
             newElement = document.createElement('div');
             newElement.setAttribute('class', 'block');
-            document.body.appendChild(newElement);
-            console.log(this.height);
+            newElement.style = 
+            `height: `+height+`;`+
+            `width:`+width+`;`+
+            `background-color:`+bg+`;`+
+            `font-size:`+fontSize+`;`;
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.appendChild(newElement);
+            });
         } else if(selector[0] == '#'){
             newElement = document.createElement('p');
             newElement.setAttribute('id', 'best');
@@ -22,5 +28,4 @@ let DomElement = {
 };
 
 let newDomElement = Object.create(DomElement);
-newDomElement.createElement('.block');
-console.log(newDomElement);
+newDomElement.createElement('.block', '100px', '100px', 'gray', '14px');
