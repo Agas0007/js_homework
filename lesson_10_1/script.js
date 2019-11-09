@@ -22,7 +22,10 @@ class DomElement {
                 });
             } else if(selector[0] == '#'){
                 newElement = document.createElement('p');
+                newElement.textContent = `Если тебе тяжело, значит ты поднимаешься в гору. 
+                Если тебе легко, значит ты летишь в пропасть`;
                 newElement.setAttribute('id', 'best');
+                newElement.style = `font-size: ${this.fontSize};`;
                 document.body.appendChild(newElement);
             }
         };
@@ -30,4 +33,6 @@ class DomElement {
 }
 
 const newElem = new DomElement('.block', '100px', '100px', 'gray', '14px');
+const newElem2 = new DomElement('#best', 'inherit', 'inherit', 'inherit', '26px');
 newElem.createElement();
+newElem2.createElement();
