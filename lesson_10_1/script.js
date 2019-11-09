@@ -26,7 +26,9 @@ class DomElement {
                 Если тебе легко, значит ты летишь в пропасть`;
                 newElement.setAttribute('id', 'best');
                 newElement.style = `font-size: ${this.fontSize};`;
-                document.body.appendChild(newElement);
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.body.appendChild(newElement);
+                });
             }
         };
     }
