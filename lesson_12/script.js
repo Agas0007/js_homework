@@ -8,13 +8,13 @@ const timesOfDay = document.querySelector('#times-of-day'),
 
     function getTimeRemaining() {
         let date = new Date(),
-            dateStop = new Date(`December 31, 2019`).getTime(),
+            dateStop = new Date(`January 1, 2020`).getTime(),
             dateNow = new Date().getTime(),
             timeRemaining = (dateStop - dateNow) / 1000,
             seconds = Math.floor(timeRemaining % 60),
             minutes = Math.floor((timeRemaining / 60) % 60),
             hours = Math.floor(timeRemaining / 60 / 60),
-            day = Math.ceil(timeRemaining / 60 / 60 / 24),
+            day = Math.floor(timeRemaining / 60 / 60 / 24),
             timeToString = date.toLocaleTimeString('en');            
 
         if (hours <= 9) {
