@@ -13,9 +13,9 @@ const timesOfDay = document.querySelector('#times-of-day'),
             timeRemaining = (dateStop - dateNow) / 1000,
             seconds = Math.floor(timeRemaining % 60),
             minutes = Math.floor((timeRemaining / 60) % 60),
-            hours = Math.floor(timeRemaining / 60 / 60),
+            hours = Math.ceil(timeRemaining / 60 / 60) % 24,
             day = Math.floor(timeRemaining / 60 / 60 / 24),
-            timeToString = date.toLocaleTimeString('en');            
+            timeToString = date.toLocaleTimeString('en');
 
         if (hours <= 9) {
             hours = '0' + hours;
@@ -40,12 +40,13 @@ const timesOfDay = document.querySelector('#times-of-day'),
 
 function output(){
     let timer = getTimeRemaining();
-
+    console.log(timer.hours);
+    
     if (timer.hours >= 0 && timer.hours <= 6) {
         timesOfDay.textContent = `Доброй ночи!`;
     } else if (timer.hours >= 6 && timer.hours < 12) {
         timesOfDay.textContent = `Доброе утро!`;
-    } else if (timer.hours <= 18) {
+    } else if (timer.hours >= 12 && timer.hours <= 18) {
         timesOfDay.textContent = `Добрый день!`;
     } else if (timer.hours >= 18) {
         timesOfDay.textContent = `Добрый вечер!`;
